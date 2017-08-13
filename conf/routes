@@ -1,0 +1,17 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# TEST PAGE
+GET			/batch							controllers.BatchController.getBatches()
+GET			/batch/:batchId								controllers.BatchController.getStats(batchId)
+POST			/batch								    controllers.BatchController.addBatch
+#PUT /message                                            controllers.CommentMessageController.updateCommentMessage
+
+
+# Map static resources from the /public folder to the /assets URL path
+GET			/assets/*file				controllers.Assets.versioned(path="/public", file: Asset)
+
+
+
+OPTIONS   /*wholepath     controllers.BatchController.options(wholepath)
