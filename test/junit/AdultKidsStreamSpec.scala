@@ -17,19 +17,19 @@ class AdultKidsStreamSpec extends Specification {
   "AdultsStream should persist adults " in new PersonTestContext {
     givenPersonsOnTopic(10, adultsTopic)
     new AdultsStream(adultsTopic, persistence).run
-    tryForTenSeconds(mongo("adults").find(MDB("batchId" -> batchId)).count() must_=== (10))
+    tryForTwentySeconds(mongo("adults").find(MDB("batchId" -> batchId)).count() must_=== (10))
   }
 
   "KidsStream should persist kids" in new PersonTestContext {
     givenPersonsOnTopic(10, kidsTopic)
     new KidsStream(kidsTopic, persistence).run
-    tryForTenSeconds(mongo("kids").find(MDB("batchId" -> batchId)).count() must_=== (10))
+    tryForTwentySeconds(mongo("kids").find(MDB("batchId" -> batchId)).count() must_=== (10))
   }
 
   "KidsStream should persist kids with school: kindergarten, elementary or high" in new PersonTestContext {
     givenPersonsOnTopic(10, kidsTopic)
     new KidsStream(kidsTopic, persistence).run
-    tryForTenSeconds(mongo("kids").find(MDB("batchId" -> batchId,
+    tryForTwentySeconds(mongo("kids").find(MDB("batchId" -> batchId,
       "school" -> MDB("$in" -> Array("kindergarten", "elementary", "high")))).count() must_=== (10))
   }
 

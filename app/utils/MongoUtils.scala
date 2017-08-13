@@ -5,11 +5,12 @@ import java.util.UUID
 import com.mongodb.DBObject
 import kafka.admin.AdminUtils
 import kafka.utils.ZkUtils
+import org.apache.kafka.common.errors.TopicExistsException
 import org.bson.types.ObjectId
 import org.json4s.mongo.JObjectParser
 import org.json4s.{ DefaultFormats, Extraction }
 
-import scala.util.Try
+import scala.util.control.Exception
 
 trait MongoUtils {
 
@@ -30,9 +31,11 @@ trait MongoUtils {
     parsed
   }
 }
+
 object Kafka {
   def createTopic(name: String): Unit = {
-    Try { AdminUtils.createTopic(ZkUtils("localhost:2181", 2000, 2000, false), name, 1, 1) }
+    Exception.ignoring(classOf[TopicExistsException]) {
+      AdminUtils.createTopic(ZkUtils("localhost:2181", 2000, 2000, false), name, 1, 1)
+    }
   }
-
 }

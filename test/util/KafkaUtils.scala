@@ -35,7 +35,7 @@ object KafkaUtils extends Matchers {
     val consumer = new KafkaConsumer[String, String](consumerProps)
     consumer.subscribe(topics.asJavaCollection)
 
-    tryForTenSeconds {
+    tryForTwentySeconds {
       val iter = consumer.poll(100).iterator()
       while (iter.hasNext) {
         val x = iter.next()

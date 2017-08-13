@@ -5,36 +5,37 @@ import java.util.UUID
 import akka.actor.ActorSystem
 import com.mongodb.DBObject
 import context.PersonTestContext
-import org.json4s.{DefaultFormats, Extraction}
+import org.json4s.{ DefaultFormats, Extraction }
 import org.json4s.mongo.JObjectParser
 import org.specs2.mutable.Specification
 import persistence._
 
 class MongoPersistenceSpec extends Specification {
+  import TableName._
   implicit val formats = new DefaultFormats {}
   implicit val as = ActorSystem("ForTest")
 
   "Should persist person " in new PersonTestContext {
     val id = UUID.randomUUID().toString
     persistence.addPerson(Person(id, 20, id))
-    mongo("persons").count(MDB("id" -> id)) must_=== (1)
+    mongo(persons).count(MDB("id" -> id)) must_=== (1)
   }
 
   "Should persist adult " in new PersonTestContext {
     val id = UUID.randomUUID().toString
     persistence.addAdult(Adult(id, 20, true, id))
-    mongo("adults").count(MDB("id" -> id)) must_=== (1)
+    mongo(adults).count(MDB("id" -> id)) must_=== (1)
   }
 
   "Should persist kid " in new PersonTestContext {
     val id = UUID.randomUUID().toString
     persistence.addKid(Kid(id, 20, "high", id))
-    mongo("kids").count(MDB("id" -> id)) must_=== (1)
+    mongo(kids).count(MDB("id" -> id)) must_=== (1)
   }
 
   "Should persist batch " in new PersonTestContext {
     persistence.addBatch(Batch(batchId, System.currentTimeMillis(), 100))
-    mongo("batches").count(MDB("id" -> batchId)) must_=== (1)
+    mongo(batches).count(MDB("id" -> batchId)) must_=== (1)
   }
 
   "Should return batch stats " in new PersonTestContext {
@@ -53,12 +54,11 @@ class MongoPersistenceSpec extends Specification {
   }
 
   "Should return batches in right order " in new PersonTestContext {
-    mongo("batches").remove(MDB())
+    mongo(batches).remove(MDB())
     persistence.addBatch(Batch(UUID.randomUUID().toString, 10, 50))
     persistence.addBatch(Batch(UUID.randomUUID().toString, 11, 75))
     persistence.addBatch(Batch(UUID.randomUUID().toString, 12, 100))
-    persistence.getBatchList().head.wanted shouldEqual(100)
+    persistence.getBatchList().head.wanted shouldEqual (100)
   }
-
 
 }

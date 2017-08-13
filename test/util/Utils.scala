@@ -5,8 +5,8 @@ import org.scalatest.concurrent.Eventually
 import scala.concurrent.duration.{ Duration, MILLISECONDS, SECONDS }
 
 object Utils extends Eventually {
-  def tryForTenSeconds(code: => Unit): Unit = {
-    eventually(timeout(Duration(10, SECONDS)), interval(Duration(100, MILLISECONDS))) {
+  def tryForTwentySeconds(code: => Unit): Unit = {
+    eventually(timeout(Duration(20, SECONDS)), interval(Duration(200, MILLISECONDS))) {
       code
     }
   }

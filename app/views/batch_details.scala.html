@@ -1,0 +1,17 @@
+@(batch: persistence.BatchStats)
+@main("batch details") {
+    <form action="/">
+        <label for="persons">persons</label>
+        <input type="text"  id="persons" value="@batch.persons"><br>
+        <label for="adults">adults</label>
+        <input type="text"  id="adults" value="@batch.adults"><br>
+        <label for="kids">kids</label>
+        <input type="text"  id="kids" value="@batch.kids"><br>
+        <label for="kindergarten">kindergarten</label>
+        <input type="text"  id="kindergarten" value="@batch.kindergarten"><br>
+        <label for="elementary">elementary</label>
+        <input type="text"  id="elementary" value="@batch.elementary"><br>
+        <label for="high">high</label>
+        <input type="text"  id="high" value="@batch.high"><br>
+    </form>
+}
