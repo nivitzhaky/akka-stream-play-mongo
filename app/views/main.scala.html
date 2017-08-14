@@ -1,11 +1,60 @@
 @(title: String)(content: Html)
 <!DOCTYPE html>
+<!--[if lte IE 9]>
+<html lang="en" class="oldie">
+<![endif]-->
+<!--[if gt IE 9]><!-->
 <html lang="en">
+        <!--<![endif]-->
+
     <head>
-        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/datatable.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+
+        <meta charset="utf-8">
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <meta name="csrf-param" content="authenticity_token" />
+        <meta name="csrf-token" content="wOvGGZ06BxvUP7yPSntobeIKtn0CSEISMasrPlvAjv8yUx0RGdQRemDKFuBv4ag3HNSkqfINBA6/Pxy2mQ2eJw==" />
+
+
+            <!--
+Copyright (c) 2017 by alassetter (https://codepen.io/alassetter/pen/cyrfB)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+
+        <title>@title</title>
+
+        <link rel="stylesheet" media="screen" href="https://production-assets.codepen.io/assets/fullpage/fullpage-1f309c2de118fa1ef0f114eb622eeac6074c3682f0129b8fca69240b89ce666f.css" />
+
+        <link href='https://fonts.googleapis.com/css?family=Lato:400,900,400italic,700italic' rel='stylesheet'>
+
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Data Table">
+        <meta name="twitter:description" content="Data table example...">
+        <meta name="twitter:image" content="https://s3-us-west-2.amazonaws.com/i.cdpn.io/8426.cyrfB.db5ee5cb-63da-42fa-a3ea-179eedf77210.png">
+
+        <meta property="og:image" content="https://codepen.io/alassetter/pen/cyrfB/image/large.png" itemprop="thumbnailUrl">
+        <meta property="og:title" content="Data Table">
+        <meta property="og:url" content="https://codepen.io/alassetter/details/cyrfB">
+        <meta property="og:site_name" content="CodePen">
+        <meta property="og:description" content="Data table example...">
+
+        <link rel="alternate" type="application/json+oembed"
+        href="https://codepen.io/api/oembed?url=https://codepen.io/alassetter/pen/cyrfB&format=json"
+        title="Data Table" />
+
+
+        <script async src="//www.google-analytics.com/analytics.js"></script>
+
     </head>
+
     <body>
     @content
     </body>

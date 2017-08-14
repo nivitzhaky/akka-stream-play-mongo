@@ -12,26 +12,58 @@
             function submitBatch() {
                 console.log("before all")
                 var data = {};
-                data['wanted'] = parseInt(document.getElementById('batch-count').value);
-                data['id'] = guid();
+                var wanted = parseInt(document.getElementById('batch-count').value);
+                data['wanted'] = wanted;
+                var id = guid();
+                data['id'] = id;
                 console.log("data is :" + JSON.stringify(data))
 
                 var xhr = new XMLHttpRequest();
                 xhr.open('POST', '/batch', true);
                 xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+                xhr.onload = function () {
+                    var table = document.getElementById("batches");
+                    var row = table.insertRow(1);
+                    var newcell = row.insertCell(0);
+                    newcell.className="text-left";
+                    newcell.innerHTML = ' <a href="/ui/$id">$title</a>'.replace('$id',id).replace('$title',id);
+                    newcell = row.insertCell(1);
+                    newcell.className="text-left";
+                    newcell.innerHTML =wanted.toString();
+                };
                 xhr.send(JSON.stringify(data));
                 console.log("after all");
             }
     </script>
 
-    <div>
+    <div  class="table-title">
         New Batch:<br>
         <input type="text" name="newBatch" id="batch-count" value="1000">
         <button onclick="submitBatch()">Submit Batch</button>
     </div>
-    <ul>
-    @for(item <- batches){
-        <li><a href="/ui/@item.id">@item.id</a>   @item.wanted </li>
-    }
-    </ul>
+
+
+            <div class="table-title">
+                <h3>Batches</h3>
+            </div>
+            <table class="table-fill" id="batches">
+                <thead>
+                    <tr>
+                        <th class="text-left">ID</th>
+                        <th class="text-left">Records</th>
+                    </tr>
+                </thead>
+                <tbody class="table-hover">
+                    @for(item <- batches){
+
+                        <tr>
+                            <td class="text-left"> <a href="/ui/@item.id">@item.id</a> </td>
+                            <td class="text-left"> @item.wanted </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
 }
