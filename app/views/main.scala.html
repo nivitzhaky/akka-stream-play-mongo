@@ -8,6 +8,7 @@
         <!--<![endif]-->
 
     <head>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/title.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/datatable.css")">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
@@ -56,6 +57,21 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
     </head>
 
     <body>
+        <div class="container">
+            <header>
+                <div class="header-top">
+                    <div class="inner">
+                        <h1><a class="site-title" href="#"> People Sorter </a></h1>
+                    </div>
+                </div>
+                <div class="header-bottom">
+
+                    <div class="inner">
+                        <h5><a class="site-title" href="#"> Kafka "persons" topic is sorted into "adults" and "kids" topics <br>  offloaded to mongodb for query </a></h5>
+                    </div>
+                </div>
+            </header>
+        </div>
     @content
     </body>
 </html>
