@@ -14,3 +14,5 @@ GET /batch/:id statistics on progress of batch
 to run the application (or tests)
 docker-compose up
 sbt run
+
+live demo on: http://ec2-13-59-172-49.us-east-2.compute.amazonaws.com:9000/
