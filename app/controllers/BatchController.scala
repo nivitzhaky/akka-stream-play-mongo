@@ -43,16 +43,12 @@ class BatchController @Inject() (system: ActorSystem) extends Controller with Js
     }
   }
 
-  def getStats(batchId: String) = Action.async(json) { implicit request =>
-    Future {
-      Ok(Extraction.decompose(mongoPersistence.getBatchStats(batchId))).withHeaders(headers: _*).withHeaders(("Content-Type", "application/json;"))
-    }
+  def getStats(batchId: String) = Action { implicit request =>
+    Ok(Extraction.decompose(mongoPersistence.getBatchStats(batchId))).withHeaders(headers: _*).withHeaders(("Content-Type", "application/json;"))
   }
 
-  def getBatches() = Action.async(json) { implicit request =>
-    Future {
-      Ok(Extraction.decompose(mongoPersistence.getBatchList())).withHeaders(headers: _*)
-    }
+  def getBatches() = Action { implicit request =>
+    Ok(Extraction.decompose(mongoPersistence.getBatchList())).withHeaders(headers: _*)
   }
 
   def index = Action {
